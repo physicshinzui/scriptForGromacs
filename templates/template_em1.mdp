@@ -1,6 +1,6 @@
 ; ions.mdp - used as input into grompp to generate ions.tpr
 ; Parameters describing what to do, when to stop and what to save
-define      = -DPOSRE      
+define      = -DPOSRES      
 integrator  = steep         ; Algorithm (steep = steepest descent minimization)
 emtol       = 1000.0        ; Stop minimization when the maximum force < 1000.0 kJ/mol/nm
 emstep      = 0.01          ; Minimization step size
