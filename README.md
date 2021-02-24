@@ -7,3 +7,5 @@ and production runs.
 1. `bash 01_prepMD.sh [input pdb file]`
 2. `bash 02_eq [run id (unsigned integer)]`
 3. `bash 03_md_prod.sh [run id]`
+
+## Test PDB: a helix system
