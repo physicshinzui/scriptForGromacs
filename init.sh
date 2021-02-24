@@ -1,0 +1,1 @@
+rm *.gro *.edr *.log *.tpr *.trr *.mdp *.xtc *.cpt *.itp \#* *.top
