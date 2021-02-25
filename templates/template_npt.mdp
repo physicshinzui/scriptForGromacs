@@ -2,7 +2,7 @@ title       = NPT equilibration
 define      = -DPOSRES  ; position restrain the protein
 ; Run parameters
 integrator	= md		; leap-frog integrator
-nsteps		= #{NSTEPS}        ; 50000     ; 2 * 50000 = 100 ps
+nsteps		= #{NSTEPS} ; 50000     ; 2 * 50000 = 100 ps
 dt          = 0.002		; 2 fs
 ; Output control
 nstxout-compressed = 50000   ; 50000 snapshot generation per 100 ps if dt = 0.002

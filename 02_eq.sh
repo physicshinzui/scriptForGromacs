@@ -12,7 +12,7 @@ This script submits MD runs.
 EOS
 
 id=$1
-bash check_mdpfiles.sh
+
 read -p "Proceed? Enter"
 
 echo "Making md inputs...(nvt.mdp and npt.mdp)"

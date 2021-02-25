@@ -1,7 +1,7 @@
 title                   =  NVT production
 ; Run parameters
 integrator              = md        ; leap-frog integrator
-nsteps                  = 100000000 ; 2 * 50000 = 100 ps
+nsteps                  = #{NSTEPS} ; 2 * 50000 = 100 ps
 dt                      = 0.002     ; 2 fs
 ; Output control
 nstxout-compressed = 50000
@@ -28,7 +28,7 @@ epsilon-rf      = 0
 tcoupl                  = V-rescale             ; modified Berendsen thermostat
 tc-grps                 = Protein Non-Protein   ; two coupling groups - more accurate
 tau_t                   = 0.1     0.1           ; time constant, in ps
-ref_t                   = 298.15  298.15        ; reference temperature, one for each group, in K
+ref_t                   = #{TEMP} #{TEMP}       ; reference temperature, one for each group, in K
 ; Pressure coupling is off
 pcoupl                  = no        ; no pressure coupling in NVT
 ; Periodic boundary conditions

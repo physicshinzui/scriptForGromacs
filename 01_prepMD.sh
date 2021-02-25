@@ -1,4 +1,7 @@
 #!/bin/bash
+#Like include in C
+. header/path2gmx.sh
+
 set -Ceu
 cat << EOS
 Author: Shinji Iida
@@ -6,8 +9,6 @@ This script automates a system preparation for Gromacs.
     Usage:
         bash ${0} [PDB file]
 EOS
-
-. header/path2gmx.sh
 
 inputPDBName=$1 
 proteinName=`basename ${inputPDBName%.*}`

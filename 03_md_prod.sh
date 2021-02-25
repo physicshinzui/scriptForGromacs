@@ -1,17 +1,23 @@
 #!/bin/bash
+#Like include in C
+. header/path2gmx.sh
+. header/production_setting.sh
+
 set -Ceu
 cat << EOS
-Author: Shinji Iida 3.6.2019 
+Author: Shinji Iida
 This script submits MD runs.
     Usage:
         bash ${0} [run id] 
 EOS
-. header/path2gmx.sh
+
 id=$1
 
 if [ -e npt_eq_${id}.tpr ] ; then
-    cp templates/template_npt_prod.mdp npt_prod_${id}.mdp
-
+    cat templates/template_npt_prod.mdp         \
+        | sed -e "s!#{RAND}!${RANDOM}!g"   \
+        | sed -e "s!#{NSTEPS}!${nsteps}!g" \
+        | sed -e "s!#{TEMP}!${temp}!g" > npt_prod_${id}.mdp
 else
     echo "There was no previous run ${id}."
     exit 
