@@ -1,3 +1,3 @@
 #!bin/bash
-nsteps=5000
+nsteps=500
 temp=310
