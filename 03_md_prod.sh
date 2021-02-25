@@ -6,6 +6,7 @@ This script submits MD runs.
     Usage:
         bash ${0} [run id] 
 EOS
+. header/path2gmx.sh
 id=$1
 
 if [ -e npt_eq_${id}.tpr ] ; then
@@ -18,10 +19,10 @@ else
 fi
 
 echo "NPT runs are running..."
-gmx grompp -f npt_eq_${id}.mdp \
+$GMX grompp -f npt_eq_${id}.mdp \
            -c nvt_eq_${id}.gro \
            -r nvt_eq_${id}.gro \
            -p topol.top  \
            -o npt_prod_${id}.tpr
 
-gmx mdrun -deffnm npt_prod_${id} #-ntmpi 1 -ntomp 6
+$GMX mdrun -deffnm npt_prod_${id} #-ntmpi 1 -ntomp 6

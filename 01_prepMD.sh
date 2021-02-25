@@ -1,13 +1,13 @@
 #!/bin/bash
 set -Ceu
 cat << EOS
-Author: Shinji Iida 24.2.2021 
+Author: Shinji Iida
 This script automates a system preparation for Gromacs.
     Usage:
         bash ${0} [PDB file]
 EOS
 
-GMX="/usr/local/bin/gmx"
+. header/path2gmx.sh
 
 inputPDBName=$1 
 proteinName=`basename ${inputPDBName%.*}`
