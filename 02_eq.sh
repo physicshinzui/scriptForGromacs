@@ -1,21 +1,30 @@
 #!/bin/bash
+#Like include in C
+. header/path2gmx.sh
+. header/equib_setting.sh
+
 set -Ceu
 cat << EOS
-Author: Shinji Iida 3.6.2019 
+Author: Shinji Iida
 This script submits MD runs.
     Usage:
-        bash ${0} [run id] 
+        bash ${0} [run id]  
 EOS
-. header/path2gmx.sh
 
 id=$1
 bash check_mdpfiles.sh
 read -p "Proceed? Enter"
 
-
 echo "Making md inputs...(nvt.mdp and npt.mdp)"
-cat templates/template_nvt.mdp | sed -e "s!#{RAND}!${RANDOM}!g" > nvt_eq_${id}.mdp
-cp  templates/template_npt.mdp npt_eq_${id}.mdp
+cat templates/template_nvt.mdp         \
+    | sed -e "s!#{RAND}!${RANDOM}!g"   \
+    | sed -e "s!#{NSTEPS}!${nsteps}!g" \
+    | sed -e "s!#{TEMP}!${temp}!g" > nvt_eq_${id}.mdp
+
+cat templates/template_npt.mdp         \
+    | sed -e "s!#{RAND}!${RANDOM}!g"   \
+    | sed -e "s!#{NSTEPS}!${nsteps}!g" \
+    | sed -e "s!#{TEMP}!${temp}!g" > npt_eq_${id}.mdp
 
 echo "NVT equilibration runs are running..."
 $GMX grompp -f nvt_eq_${id}.mdp \
