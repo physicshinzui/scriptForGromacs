@@ -3,6 +3,7 @@
 . header/path2gmx.sh
 . header/restart_setting.sh
 . header/error_handling.sh
+. header/computing_env.sh
 
 set -Ceu
 cat<<EOS
@@ -26,5 +27,5 @@ $GMX convert-tpr -s npt_prod_${id}.tpr \
 #Restart a run
 $GMX mdrun -deffnm npt_prod_${id}  \
            -s npt_prod_${id}.tpr   \
-           -cpi npt_prod_${id}.cpt 
-           #-ntmpi 1 -ntomp 7
+           -cpi npt_prod_${id}.cpt \
+           -ntmpi ${ntmpi} -ntomp ${ntomp}
