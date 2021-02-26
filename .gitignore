@@ -7,4 +7,6 @@
 *.edr
 *.itp
 *.mdp
+*.cpt
+*.xtc
 *#*

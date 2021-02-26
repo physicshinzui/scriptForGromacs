@@ -1,13 +1,30 @@
 #!/bin/bash
-#$ -S /bin/bash
-#$ -cwd
-. /etc/profile.d/modules.sh
-module load cuda
-unset OMP_NUM_THREADS
+#Like include in C
+. header/path2gmx.sh
+. header/restart_setting.sh
+. header/error_handling.sh
+
 set -Ceu
+cat<<EOS
+Author: Shinji Iida
 
-GMX=/gs/hs0/hp170020/siida/gromacs-2019.1/build/bin/gmx
+This script makes a run restart.
+Usage: 
+    bash ${0} [run id]
+EOS
 
-#Note: -extend time [ps]
-$GMX convert-tpr -s npt_prod_${id}.tpr -extend 250000 -o npt_prod_${id}.tpr
-$GMX mdrun -deffnm npt_prod_${id} -s npt_prod_${id}.tpr -cpi npt_prod_${id}.cpt -ntmpi 1 -ntomp 7
+id=$1
+
+#check the existence
+doesExist npt_prod_${id}.tpr
+
+#Modify tpr file
+$GMX convert-tpr -s npt_prod_${id}.tpr \
+                 -extend ${t_extend}   \
+                 -o npt_prod_${id}.tpr
+
+#Restart a run
+$GMX mdrun -deffnm npt_prod_${id}  \
+           -s npt_prod_${id}.tpr   \
+           -cpi npt_prod_${id}.cpt 
+           #-ntmpi 1 -ntomp 7
