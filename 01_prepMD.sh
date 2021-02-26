@@ -1,6 +1,8 @@
 #!/bin/bash
 #Like include in C
 . header/path2gmx.sh
+. header/em_setting.sh
+. header/computing_env.sh
 
 set -Ceu
 cat << EOS
@@ -43,11 +45,11 @@ $GMX grompp -f templates/template_em1.mdp \
            -r ${proteinName}_solv_ions.gro \
            -p topol.top \
            -o em1.tpr 
-$GMX mdrun -deffnm em1 #-ntmpi 1 -ntomp 6
+$GMX mdrun -deffnm em1 -ntmpi ${ntmpi} -ntomp ${ntomp}
 
 echo "Energy minimisation 2 ..."
 $GMX grompp -f templates/template_em2.mdp \
            -c em1.gro \
            -p topol.top \
            -o em2.tpr 
-$GMX mdrun -deffnm em2 #-ntmpi 1 -ntomp 6
+$GMX mdrun -deffnm em2 -ntmpi ${ntmpi} -ntomp ${ntomp}

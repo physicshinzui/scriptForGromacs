@@ -2,6 +2,7 @@
 #Like include in C
 . header/path2gmx.sh
 . header/production_setting.sh
+. header/computing_env.sh
 
 set -Ceu
 cat << EOS
@@ -37,4 +38,4 @@ $GMX grompp -f npt_prod_${id}.mdp  \
 # - Starting coordinates can be read from trajectory with -t
 #   - Only if this information is absent will the coordinates in the -c file be used.    
 
-$GMX mdrun -deffnm npt_prod_${id} #-ntmpi 1 -ntomp 6
+$GMX mdrun -deffnm npt_prod_${id} -ntmpi ${ntmpi} -ntomp ${ntomp}
