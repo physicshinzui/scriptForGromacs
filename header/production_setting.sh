@@ -1,5 +1,5 @@
 #!bin/bash
-nsteps=500
+nsteps=2000
 temp=310
-nstxout=100
+nstxout=10
 nstlog=100
