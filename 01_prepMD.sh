@@ -1,10 +1,10 @@
 #!/bin/bash
+set -Ceu
 #Like include in C
 . header/path2gmx.sh
 . header/em_setting.sh
 . header/computing_env.sh
 
-set -Ceu
 cat << EOS
 Author: Shinji Iida
 This script automates a system preparation for Gromacs.

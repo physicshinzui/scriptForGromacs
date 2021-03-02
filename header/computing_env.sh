@@ -8,8 +8,8 @@
 #See https://manual.gromacs.org/current/user-guide/mdrun-performance.html
 
 # where?
-readonly computer='TSUBAME' 
-#readonly computer='local'
+#readonly ENV='TSUBAME' 
+readonly ENV='local'
 
 #my local environment
 readonly ntmpi=4 #Using 4 MPI threads

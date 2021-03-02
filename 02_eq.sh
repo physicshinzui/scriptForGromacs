@@ -1,10 +1,12 @@
 #!/bin/bash
+set -Ceu
 #Like include in C
 . header/path2gmx.sh
 . header/equib_setting.sh
 . header/computing_env.sh
+[ ${ENV} = 'TSUBAME' ] && . header/TSUBAME_header.sh
 
-set -Ceu
+
 cat << EOS
 Author: Shinji Iida
 This script submits MD runs.
