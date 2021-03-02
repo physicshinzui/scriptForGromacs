@@ -7,9 +7,13 @@
 #The OpenMP implementation is quite efficient and scales well for up to 12-24 threads on Intel and 6-8 threads on AMD CPUs.
 #See https://manual.gromacs.org/current/user-guide/mdrun-performance.html
 
+# where?
+readonly computer='TSUBAME' 
+#readonly computer='local'
+
 #my local environment
-ntmpi=4 #Using 4 MPI threads
-ntomp=1 #Using OpenMP 1 thread
+readonly ntmpi=4 #Using 4 MPI threads
+readonly ntomp=1 #Using OpenMP 1 thread
 
 #By default, the thread-MPI mdrun will use all available cores in the machine by starting an appropriate number of ranks 
 #or OpenMP threads to occupy all of them. The number of ranks can be controlled using the -nt and -ntmpi options. 
