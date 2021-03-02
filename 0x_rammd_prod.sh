@@ -3,11 +3,12 @@
 . header/path2gmx.sh
 . header/production_setting.sh
 . header/computing_env.sh
+. header/ramd_setting.sh
 
 set -Ceu
 cat << EOS
 Author: Shinji Iida
-This script submits MD runs.
+This script submits RAMD runs.
     Usage:
         bash ${0} [run id] 
 EOS
@@ -15,13 +16,15 @@ EOS
 id=$1
 
 if [ -e npt_eq_${id}.tpr ] ; then
-    cat templates/ramd_npt.mdp               \
-        | sed -e "s!#{RAND}!${RANDOM}!g"     \
-        | sed -e "s!#{NSTEPS}!${nsteps}!g"   \
-        | sed -e "s!#{TEMP}!${temp}!g"       \
-        | sed -e "s!#{NSTXOUT}!${nstxout}!g" \
-        | sed -e "s!#{LOGOUT}!${nstlog}!g"   \
-        | sed -e "s!#{SEED}!${RANDOM}!g"      \
+    cat templates/ramd_npt.mdp                   \
+        | sed -e "s!#{RAND}!${RANDOM}!g"         \
+        | sed -e "s!#{NSTEPS}!${nsteps}!g"       \
+        | sed -e "s!#{TEMP}!${temp}!g"           \
+        | sed -e "s!#{NSTXOUT}!${nstxout}!g"     \
+        | sed -e "s!#{LOGOUT}!${nstlog}!g"       \
+        | sed -e "s!#{SEED}!${RANDOM}!g"         \
+        | sed -e "s!#{GROUP1}!${ramd_group1}!g"  \
+        | sed -e "s!#{GROUP2}!${ramd_group2}!g"  \
         > ramd_npt_prod_${id}.mdp
 else
     echo "There was no previous run ${id}."
