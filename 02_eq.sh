@@ -2,10 +2,9 @@
 set -Ceu
 #Like include in C
 . header/path2gmx.sh
-. header/equib_setting.sh
 . header/computing_env.sh
+. header/input_file_creation.sh
 [ ${ENV} = 'TSUBAME' ] && . header/TSUBAME_header.sh
-
 
 cat << EOS
 Author: Shinji Iida
@@ -19,15 +18,9 @@ id=$1
 read -p "Proceed? Enter"
 
 echo "Making md inputs...(nvt.mdp and npt.mdp)"
-cat templates/template_nvt.mdp         \
-    | sed -e "s!#{RAND}!${RANDOM}!g"   \
-    | sed -e "s!#{NSTEPS}!${nsteps}!g" \
-    | sed -e "s!#{TEMP}!${temp}!g" > nvt_eq_${id}.mdp
 
-cat templates/template_npt.mdp         \
-    | sed -e "s!#{RAND}!${RANDOM}!g"   \
-    | sed -e "s!#{NSTEPS}!${nsteps}!g" \
-    | sed -e "s!#{TEMP}!${temp}!g" > npt_eq_${id}.mdp
+make_mdp_file nvt eq $id
+make_mdp_file npt eq $id
 
 echo "NVT equilibration runs are running..."
 $GMX grompp -f nvt_eq_${id}.mdp \
