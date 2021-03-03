@@ -1,5 +1,5 @@
 #!bin/bash
-readonly nsteps=2000
-readonly temp=310
-readonly nstxout=10
-readonly nstlog=100
+nsteps=2000
+temp=310
+nstxout=10
+nstlog=100
