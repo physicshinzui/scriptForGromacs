@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function doesExist {
+function file_exists {
     local file=$1
     if [ ! -e $file ]; then
         echo "$file does not exist. Stopped." 

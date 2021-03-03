@@ -18,7 +18,7 @@ EOS
 id=$1
 
 #check the existence
-doesExist npt_prod_${id}.tpr
+file_exists npt_prod_${id}.tpr
 
 #Modify tpr file
 $GMX convert-tpr -s npt_prod_${id}.tpr \
