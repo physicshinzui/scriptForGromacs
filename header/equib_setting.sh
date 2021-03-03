@@ -1,3 +1,3 @@
 #!bin/bash
-nsteps=500
-temp=310
+readonly nsteps=500
+readonly temp=310
