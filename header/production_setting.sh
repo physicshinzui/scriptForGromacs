@@ -1,5 +1,5 @@
 #!bin/bash
-readonly nsteps=2000
-readonly temp=310
-readonly nstxout=10
-readonly nstlog=100
+readonly PROD_NSTEPS=2000
+readonly PROD_TEMP=310
+readonly PROD_NSTXOUT=10
+readonly PROD_NSTLOG=100

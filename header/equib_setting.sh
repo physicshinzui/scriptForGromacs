@@ -1,3 +1,3 @@
 #!bin/bash
-readonly nsteps=500
-readonly temp=310
+readonly EQ_NSTEPS=500
+readonly EQ_TEMP=310
