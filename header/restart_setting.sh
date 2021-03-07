@@ -1,3 +1,3 @@
 #!/bin/bash
-readonly t_extend=0.1   # unit [ps]
-#readonly t_until=10     # unit [ps]
+readonly T_EXTEND=0.1   # unit [ps]
+#readonly T_UNTIL=10     # unit [ps]
