@@ -22,7 +22,7 @@ readonly MD_TYPE=$2 #ramd or npt
 file_exists ${MD_TYPE}_prod_${id}.tpr
 
 #mdrub option setting
-mdrun_options="-deffnm ${MD_TYPE}_prod_${id} -s ${MD_TYPE}_prod_${id}.tpr -cpi ${MD_TYPE}_prod_${id}.cpt -ntmpi ${ntmpi} -ntomp ${ntomp}" 
+mdrun_options="-deffnm ${MD_TYPE}_prod_${id} -s ${MD_TYPE}_prod_${id}.tpr -cpi ${MD_TYPE}_prod_${id}.cpt -noappend -ntmpi ${ntmpi} -ntomp ${ntomp}" 
 ramd_options=" -px ${MD_TYPE}_prod_${id}_pullx.xvg -pf ${MD_TYPE}_prod_${id}_pullf.xvg"
 [ ${MD_TYPE} = 'ramd' ] && mdrun_options="${mdrun_options}${ramd_options}" #concatinate options
 
