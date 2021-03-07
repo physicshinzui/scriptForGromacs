@@ -8,3 +8,5 @@ and production runs.
 2. `bash 02_eq.sh [run id (unsigned integer)]`
 3. `bash 03_md_prod.sh [run id]`
 4. `bash 0x_ramd_prod.sh [run id]`
+
+![flowchart](./figs/myGroScripts.jpg)
