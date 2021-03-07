@@ -20,7 +20,7 @@ $GMX pdb2gmx -f ${inputPDBName} -o ${proteinName}_processed.gro -water tip3p
 $GMX editconf -f ${proteinName}_processed.gro \
              -o ${proteinName}_newbox.gro    \
              -d 1.0                          \
-             -bt dodecahedron 
+             -bt dodecahedron #triclinic 
 
 $GMX solvate -cp ${proteinName}_newbox.gro \
             -cs spc216.gro                \
