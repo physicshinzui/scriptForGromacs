@@ -21,13 +21,21 @@ readonly MD_TYPE=$2 #ramd or npt
 #check the existence
 file_exists ${MD_TYPE}_prod_${id}.tpr
 
-#mdrub option setting
-mdrun_options="-deffnm ${MD_TYPE}_prod_${id} -s ${MD_TYPE}_prod_${id}.tpr -cpi ${MD_TYPE}_prod_${id}.cpt -noappend -ntmpi ${ntmpi} -ntomp ${ntomp}" 
-#ramd_options=" -px ${MD_TYPE}_prod_${id}_pullx.xvg -pf ${MD_TYPE}_prod_${id}_pullf.xvg"
-#[ ${MD_TYPE} = 'ramd' ] && mdrun_options="${mdrun_options}${ramd_options}" #concatinate options
+#mdrun option setting
+run_header="${MD_TYPE}_prod_${id}"
+cpi_file="${MD_TYPE}_prod_${id}.cpt"
+tpr_file="${MD_TYPE}_prod_${id}.tpr"
+mdrun_options="-deffnm ${run_header} -s ${tpr_file} -cpi ${cpi_file} -noappend -ntmpi ${ntmpi} -ntomp ${ntomp}" 
+
+ramd_options=" -ramd"
+[ ${MD_TYPE} = 'ramd' ] && mdrun_options="${mdrun_options}${ramd_options}" #concatinate options
+
+echo "---MD RUN options ---"
+echo ${mdrun_options}
 
 #Modify tpr file
-$GMX convert-tpr -s ${MD_TYPE}_prod_${id}.tpr -extend ${T_EXTEND} -o ${MD_TYPE}_prod_${id}.tpr
+##I found this not necessary.
+#$GMX convert-tpr -s ${MD_TYPE}_prod_${id}.tpr -o ${MD_TYPE}_prod_${id}.tpr
 
 #Restart a run
-$GMX mdrun ${mdrun_options}
+$GMX mdrun ${mdrun_options} -nsteps ${RST_N_STEPS}
