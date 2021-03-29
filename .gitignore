@@ -6,9 +6,10 @@
 *.log
 *.edr
 *.itp
-*.mdp
 *.cpt
 *.xtc
 *.xvg
 *.ndx
 *#*
+pre
+in_out_files
