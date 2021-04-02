@@ -39,17 +39,21 @@ echo "SOL" | $GMX genion \
     -pname NA -nname CL \
     -conc 0.1 -neutral 
 
+### MPI threads (-ntmpi) and OpenMP threads per tMPI thread (-ntomp) 
+option_mpi="" #Default is off. Then, mdrun automatically assigns -ntmpi and -ntomp 
+#option_mpi="-ntmpi ${ntmpi} -ntomp ${ntomp}"
+ 
 echo "Energy minimisation 1 ..."
 $GMX grompp -f templates/template_em1.mdp \
            -c ${proteinName}_solv_ions.gro \
            -r ${proteinName}_solv_ions.gro \
            -p topol.top \
            -o em1.tpr 
-$GMX mdrun -deffnm em1 -ntmpi ${ntmpi} -ntomp ${ntomp}
+$GMX mdrun -deffnm em1 ${option_mpi}
 
 echo "Energy minimisation 2 ..."
 $GMX grompp -f templates/template_em2.mdp \
            -c em1.gro \
            -p topol.top \
            -o em2.tpr 
-$GMX mdrun -deffnm em2 -ntmpi ${ntmpi} -ntomp ${ntomp}
+$GMX mdrun -deffnm em2 ${option_mpi}

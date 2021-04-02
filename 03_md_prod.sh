@@ -17,6 +17,10 @@ id=$1
 
 make_mdp_file npt prod $id
 
+### MPI threads (-ntmpi) and OpenMP threads per tMPI thread (-ntomp) 
+option_mpi="" #Default is off. Then, mdrun automatically assigns -ntmpi and -ntomp 
+#option_mpi="-ntmpi ${ntmpi} -ntomp ${ntomp}"
+
 echo "NPT runs are running..."
 $GMX grompp -f npt_prod_${id}.mdp  \
             -c npt_eq_${id}.gro    \
@@ -27,4 +31,4 @@ $GMX grompp -f npt_prod_${id}.mdp  \
 # - Starting coordinates can be read from trajectory with -t
 #   - Only if this information is absent will the coordinates in the -c file be used.    
 
-$GMX mdrun -deffnm npt_prod_${id} -ntmpi ${ntmpi} -ntomp ${ntomp} -noappend
+$GMX mdrun -deffnm npt_prod_${id} ${option_mpi} -noappend
