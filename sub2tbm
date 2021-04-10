@@ -2,8 +2,10 @@
 set -Ceu
 
 cat<<EOS
+
 Usage:
     bash $0 [SHELL] [MD_TYPE] [nPreRuns]
+
     Args:
         SHELL:
             - 03_md_prod.sh
@@ -12,7 +14,9 @@ Usage:
         MD_TYPE: "npt or "ramd"
         nPreRuns: No. of the previous runs (>0)
 
-    See: https://helpdesk.t3.gsic.titech.ac.jp/manuals/handbook.ja/jobs/
+    How to submit jobs to TSUBAME:
+        https://helpdesk.t3.gsic.titech.ac.jp/manuals/handbook.ja/jobs/
+
 EOS
 
 readonly GROUP_NAME='hp170020'
