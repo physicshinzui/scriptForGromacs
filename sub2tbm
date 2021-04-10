@@ -22,11 +22,11 @@ EOS
 readonly GROUP_NAME='hp170020'
 readonly WALL_TIME='24:00:00'
 readonly JOB_NAME='cMD'
-readonly exe=$1
+readonly EXE=$1
 readonly MD_TYPE=$2
 readonly N_PRE_RUNS=$3
 readonly priority='-5' #Default
 for (( i=0; i<${N_PRE_RUNS}; i++ )); do
-    echo "qsub -g ${GROUP_NAME} -p ${priority} -l q_node=1 -l h_rt=${WALL_TIME} -v id=${i} -N ${JOB_NAME} ${exe}"
-#    qsub -g ${GROUP_NAME} -p ${priority} -l q_node=1 -l h_rt=${WALL_TIME} -v id=${i} -N ${JOB_NAME} ${exe}
+    echo "qsub -g ${GROUP_NAME} -p ${priority} -l q_node=1 -l h_rt=${WALL_TIME} -v id=${i} -N ${JOB_NAME} ${EXE}"
+#    qsub -g ${GROUP_NAME} -p ${priority} -l q_node=1 -l h_rt=${WALL_TIME} -v id=${i} -N ${JOB_NAME} ${EXE}
 done
