@@ -1,4 +1,6 @@
 #!/bin/bash
+#$ -S /bin/bash
+#$ -cwd
 set -Ceu
 #Like include in C
 . header/path2gmx.sh
