@@ -45,11 +45,11 @@ $GMX grompp -f templates/template_em1.mdp \
            -r ${proteinName}_solv_ions.gro \
            -p topol.top \
            -o em1.tpr 
-$GMX mdrun -deffnm em1 -ntmpi ${ntmpi} -ntomp ${ntomp}
+$GMX mdrun -deffnm em1 
 
 echo "Energy minimisation 2 ..."
 $GMX grompp -f templates/template_em2.mdp \
            -c em1.gro \
            -p topol.top \
            -o em2.tpr 
-$GMX mdrun -deffnm em2 -ntmpi ${ntmpi} -ntomp ${ntomp}
+$GMX mdrun -deffnm em2

@@ -26,4 +26,4 @@ $GMX grompp -f ramd_prod_${id}.mdp  \
 # - Starting coordinates can be read from trajectory with -t
 #   - Only if this information is absent will the coordinates in the -c file be used.    
 
-$GMX mdrun -deffnm ramd_prod_${id} -ntmpi ${ntmpi} -ntomp ${ntomp} -noappend -ramd
+$GMX mdrun -deffnm ramd_prod_${id} -noappend -ramd
